@@ -54,4 +54,4 @@ Usage:
 
 - 访问 http://localhost:5000 ，你就应该能看见如下所示的terminal ：）
 
-  <img src="/Users/likun/code/dotnet/docker-web-terminal-dotnet-core/demo.png">
+  <img src="demo.png">
