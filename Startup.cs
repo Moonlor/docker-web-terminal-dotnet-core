@@ -101,8 +101,7 @@ namespace EchoApp
     #region Echo
     private async Task Echo(HttpContext context, WebSocket _webSocket)
     {
-
-      const string id = "5fcd5d77e072";
+      const string id = "3c9aecd2268f";
 
       var client = new DockerClientConfiguration(new Uri("http://233.233.233.233:2375")).CreateClient();
 
@@ -127,7 +126,6 @@ namespace EchoApp
         // Get Info of Exec Instance
         var execInspectResp = await client.Containers.InspectContainerExecAsync(execCreateResp.ID, default(CancellationToken));
         var pid = execInspectResp.Pid;
-        // _logger.LogInformation($"Started Container Console (env-id: {environment.Id}, pid: {pid}");
 
 
         // Read from Docker to WS
@@ -180,7 +178,7 @@ namespace EchoApp
               if (wsReadResult.CloseStatus.HasValue)
               {
                 // _logger.LogInformation($"Stop Container Console (env-id: {environment.Id}, pid: {pid}");
-                var killSequence = Encoding.ASCII.GetBytes($"Stop-Process -Id {pid}{Environment.NewLine}");
+                var killSequence = Encoding.ASCII.GetBytes($"exit{Environment.NewLine}");
                 await stream.WriteAsync(killSequence, 0, killSequence.Length,
                 default(CancellationToken));
                 break;
